@@ -28,4 +28,12 @@ class ShoppingListRepository(private val shoppingListDao : ShoppingListDAO) {
         shoppingListDao.insert(shoppingItem)
     }
 
+    suspend fun update(shoppingItem: ShoppingItem){
+        shoppingListDao.update(shoppingItem)
+    }
+
+    suspend fun delete(shoppingItem: ShoppingItem){
+        shoppingListDao.delete(shoppingItem)
+    }
+
 }

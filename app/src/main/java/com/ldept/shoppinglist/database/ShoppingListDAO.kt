@@ -28,6 +28,12 @@ interface ShoppingListDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: ShoppingItem)
 
+    @Update
+    suspend fun update(item: ShoppingItem)
+
+    @Delete
+    suspend fun delete(item: ShoppingItem)
+
     @Transaction
     @Query("SELECT * FROM shopping_list_table WHERE shoppingListId = :shoppingListId")
     fun getShoppingListWithItems(shoppingListId: Long) : Flow<ShoppingListWithItems>
