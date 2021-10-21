@@ -27,8 +27,8 @@ class ShoppingListDetailsViewModel(
     fun delete(shoppingList: ShoppingList) = viewModelScope.launch {
         repository.delete(shoppingList)
     }
-    fun onShoppingItemSelected(shoppingItem: ShoppingItem){
-
+    fun onItemCheckboxSelected(shoppingItem: ShoppingItem, isChecked: Boolean) = viewModelScope.launch {
+        repository.update(shoppingItem.copy(isChecked = isChecked))
     }
 
     fun onAddButtonClicked(nameText : String, quantity : Int) = viewModelScope.launch {

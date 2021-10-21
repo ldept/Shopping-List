@@ -71,7 +71,11 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
     }
 
     override fun onItemClick(shoppingItem: ShoppingItem) {
-        viewModel.onShoppingItemSelected(shoppingItem)
+        // TODO:
+    }
+
+    override fun onItemCheckboxClick(shoppingItem: ShoppingItem, isChecked: Boolean) {
+        viewModel.onItemCheckboxSelected(shoppingItem, isChecked)
     }
 
 }

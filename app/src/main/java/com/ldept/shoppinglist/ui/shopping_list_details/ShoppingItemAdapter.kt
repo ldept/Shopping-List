@@ -14,6 +14,7 @@ class ShoppingItemsAdapter(
 
     interface OnItemClickListener {
         fun onItemClick(shoppingItem: ShoppingItem)
+        fun onItemCheckboxClick(shoppingItem: ShoppingItem, isChecked: Boolean)
     }
 
     inner class ShoppingItemViewHolder(
@@ -22,12 +23,12 @@ class ShoppingItemsAdapter(
 
         init {
             binding.apply {
-                root.setOnClickListener {
+                groceryCheckbox.setOnClickListener {
                     // It's possible to click a deleted item before an animation finishes
                     // that's why we have to check if the item we clicked is valid or not
                     if(adapterPosition != RecyclerView.NO_POSITION){
                         val shoppingItem = getItem(adapterPosition)
-                        listener.onItemClick(shoppingItem)
+                        listener.onItemCheckboxClick(shoppingItem,groceryCheckbox.isChecked)
                     }
                 }
             }
@@ -38,6 +39,9 @@ class ShoppingItemsAdapter(
                 groceryTitle.text = shoppingItem.name
                 val quantityText = "x${shoppingItem.quantity}"
                 groceryQuantity.text = quantityText
+                groceryTitle.paint.isStrikeThruText = shoppingItem.isChecked
+                groceryQuantity.paint.isStrikeThruText = shoppingItem.isChecked
+                groceryCheckbox.isChecked = shoppingItem.isChecked
             }
         }
 
