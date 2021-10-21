@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,6 +42,7 @@ class ShoppingListsFragment : Fragment(), ShoppingListsAdapter.OnItemClickListen
                 adapter = shoppingListsAdapter
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
+                addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
             }
         }
         viewModel = ViewModelProvider(

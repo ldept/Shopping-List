@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ldept.shoppinglist.R
 import com.ldept.shoppinglist.ShoppingListApp
@@ -43,6 +44,7 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
                 adapter = shoppingItemsAdapter
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
+                addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
 
             addGroceryButton.setOnClickListener {
