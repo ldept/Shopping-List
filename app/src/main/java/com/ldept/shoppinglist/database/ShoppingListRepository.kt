@@ -1,6 +1,8 @@
 package com.ldept.shoppinglist.database
 
+import com.ldept.shoppinglist.database.entities.ShoppingItem
 import com.ldept.shoppinglist.database.entities.ShoppingList
+import com.ldept.shoppinglist.database.entities.relations.ShoppingListWithItems
 import kotlinx.coroutines.flow.Flow
 
 class ShoppingListRepository(private val shoppingListDao : ShoppingListDAO) {
@@ -18,5 +20,12 @@ class ShoppingListRepository(private val shoppingListDao : ShoppingListDAO) {
         shoppingListDao.delete(shoppingList)
     }
 
+    fun getShoppingListWithItems(shoppingList: ShoppingList) : Flow<ShoppingListWithItems> {
+        return shoppingListDao.getShoppingListWithItems(shoppingListId = shoppingList.shoppingListId)
+    }
+
+    suspend fun insert(shoppingItem: ShoppingItem){
+        shoppingListDao.insert(shoppingItem)
+    }
 
 }

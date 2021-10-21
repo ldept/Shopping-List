@@ -30,5 +30,5 @@ interface ShoppingListDAO {
 
     @Transaction
     @Query("SELECT * FROM shopping_list_table WHERE shoppingListId = :shoppingListId")
-    fun getShoppingListWithItems(shoppingListId: Long) : Flow<List<ShoppingListWithItems>>
+    fun getShoppingListWithItems(shoppingListId: Long) : Flow<ShoppingListWithItems>
 }
