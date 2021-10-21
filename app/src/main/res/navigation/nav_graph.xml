@@ -8,6 +8,19 @@
     <fragment
         android:id="@+id/shoppingListsFragment"
         android:name="com.ldept.shoppinglist.ui.shopping_lists.ShoppingListsFragment"
-        android:label="ShoppingListsFragment"
-        tools:layout="@layout/fragment_shopping_lists"/>
+        android:label="Shopping lists"
+        tools:layout="@layout/fragment_shopping_lists">
+        <action
+            android:id="@+id/action_shoppingListsFragment_to_shoppingListDetailsFragment2"
+            app:destination="@id/shoppingListDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingListDetailsFragment2"
+        android:name="com.ldept.shoppinglist.ui.shopping_list_details.ShoppingListDetailsFragment"
+        android:label="Shopping list details"
+        tools:layout="@layout/fragment_shopping_lists_details">
+        <argument
+            android:name="shoppingList"
+            app:argType="com.ldept.shoppinglist.database.entities.ShoppingList" />
+    </fragment>
 </navigation>

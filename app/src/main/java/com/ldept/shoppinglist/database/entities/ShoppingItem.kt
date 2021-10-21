@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class ShoppingItem(
     @PrimaryKey(autoGenerate = true) val itemId : Long,
     val name: String,
-    val quantity: Int,
-    val isChecked: Boolean,
+    val quantity: Int = 1,
+    val isChecked: Boolean = false,
     val shoppingListId: Long,
 ) : Parcelable

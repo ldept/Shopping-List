@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class ShoppingListsViewModel(private val repository: ShoppingListRepository) : ViewModel() {
-    val shoppingLists : LiveData<List<ShoppingList>> = repository.shoppingLists.asLiveData()
+    val shoppingLists: LiveData<List<ShoppingList>> = repository.shoppingLists.asLiveData()
 
     fun insert(shoppingList: ShoppingList) = viewModelScope.launch {
         repository.insert(shoppingList)
@@ -20,13 +20,15 @@ class ShoppingListsViewModel(private val repository: ShoppingListRepository) : V
     fun delete(shoppingList: ShoppingList) = viewModelScope.launch {
         repository.delete(shoppingList)
     }
+
 }
 
-class ShoppingListsViewModelFactory(private val repository: ShoppingListRepository) : ViewModelProvider.Factory {
+class ShoppingListsViewModelFactory(private val repository: ShoppingListRepository) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(ShoppingListsViewModel::class.java)){
+        if (modelClass.isAssignableFrom(ShoppingListsViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return  ShoppingListsViewModel(repository) as T
+            return ShoppingListsViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
