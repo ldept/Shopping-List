@@ -17,6 +17,15 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_shoppingListsFragment_to_shoppingListsArchivedFragment"
+            app:destination="@id/shoppingListsArchivedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/shoppingListDetailsFragment2"
@@ -26,5 +35,30 @@
         <argument
             android:name="shoppingList"
             app:argType="com.ldept.shoppinglist.database.entities.ShoppingList" />
+        <argument
+            android:name="isListArchived"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingListsArchivedFragment"
+        android:name="com.ldept.shoppinglist.ui.archived_shopping_lists.ShoppingListsArchivedFragment"
+        android:label="Archived Shopping Lists"
+        tools:layout="@layout/fragment_archived_shopping_lists">
+        <action
+            android:id="@+id/action_shoppingListsArchivedFragment_to_shoppingListDetailsFragment2"
+            app:destination="@id/shoppingListDetailsFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_shoppingListsArchivedFragment_to_shoppingListsFragment"
+            app:destination="@id/shoppingListsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

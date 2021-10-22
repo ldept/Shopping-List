@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.archived_shopping_lists.ShoppingListsArchivedFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/archived_shopping_lists_recyclerview"

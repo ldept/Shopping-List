@@ -1,14 +1,17 @@
 package com.ldept.shoppinglist.ui.shopping_list_details
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
 import com.ldept.shoppinglist.R
 import com.ldept.shoppinglist.ShoppingListApp
 import com.ldept.shoppinglist.database.entities.ShoppingItem
@@ -25,11 +28,13 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
     private lateinit var viewModel: ShoppingListDetailsViewModel
     private val args : ShoppingListDetailsFragmentArgs by navArgs()
     private lateinit var shoppingList : ShoppingList
+    private var isListArchived : Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.findViewById<TabLayout>(R.id.tab_layout)?.visibility = View.GONE
         return inflater.inflate(R.layout.fragment_shopping_lists_details, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +43,7 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
         val shoppingItemsAdapter = ShoppingItemsAdapter(this)
 
         shoppingList = args.shoppingList
-
+        isListArchived = args.isListArchived
         binding.apply {
             groceriesRecyclerview.apply {
                 adapter = shoppingItemsAdapter
@@ -52,6 +57,10 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
                 val quantityText = addGroceryQuantityEdittext.text.toString()
                 val quantity = if (quantityText == "") 1 else quantityText.toInt()
                 viewModel.onAddButtonClicked(nameText, quantity)
+            }
+
+            if(isListArchived){
+                addGroceryFab.visibility = View.GONE
             }
 
         }
@@ -75,6 +84,7 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
     }
 
     override fun onItemCheckboxClick(shoppingItem: ShoppingItem, isChecked: Boolean) {
+
         viewModel.onItemCheckboxSelected(shoppingItem, isChecked)
     }
 

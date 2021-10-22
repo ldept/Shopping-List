@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 class ShoppingListRepository(private val shoppingListDao : ShoppingListDAO) {
     val shoppingLists : Flow<List<ShoppingList>> = shoppingListDao.getLists()
+    val archivedLists : Flow<List<ShoppingList>> = shoppingListDao.getArchivedLists()
 
     suspend fun insert(shoppingList : ShoppingList){
         shoppingListDao.insert(shoppingList)
