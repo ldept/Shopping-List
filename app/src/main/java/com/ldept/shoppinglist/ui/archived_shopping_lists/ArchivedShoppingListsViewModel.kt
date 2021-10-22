@@ -10,15 +10,6 @@ import java.lang.IllegalArgumentException
 class ShoppingListsArchivedViewModel(private val repository: ShoppingListRepository) : ViewModel() {
     val archivedLists: LiveData<List<ShoppingList>> = repository.archivedLists.asLiveData()
 
-
-    fun update(shoppingList: ShoppingList) = viewModelScope.launch {
-        repository.update(shoppingList)
-    }
-
-    fun delete(shoppingList: ShoppingList) = viewModelScope.launch {
-        repository.delete(shoppingList)
-    }
-
 }
 
 class ShoppingListsArchivedViewModelFactory(private val repository: ShoppingListRepository) :
