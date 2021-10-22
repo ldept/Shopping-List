@@ -140,7 +140,8 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
                 val quantity = if (quantityText == "") 1 else quantityText.toInt()
                 if(shoppingItem != null)
                     viewModel.onSaveButtonClicked(shoppingItem.copy(name = nameText,quantity = quantity))
-                viewModel.onSaveButtonClicked(nameText, quantity)
+                else
+                    viewModel.onSaveButtonClicked(nameText, quantity)
                 dialog?.dismiss()
             }
             deleteGroceryButton.setOnClickListener {
