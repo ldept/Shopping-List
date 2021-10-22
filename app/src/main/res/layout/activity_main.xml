@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ui.MainActivity"
     android:id="@+id/main_constraint_layout"
     android:animateLayoutChanges="true">
 
@@ -16,19 +16,18 @@
             app:tabTextAppearance="@style/TabTextAppearance"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/nav_host_fragment"
-            android:outlineAmbientShadowColor="@color/black"
             >
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_baseline_list_24"
-                android:text="Shopping Lists"/>
+                android:text="@string/shopping_lists"/>
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_baseline_archive_24"
-                android:text="Archived Shopping Lists"/>
+                android:text="@string/archived_shopping_lists"/>
         </com.google.android.material.tabs.TabLayout>
 
     <androidx.fragment.app.FragmentContainerView
