@@ -52,11 +52,26 @@ class ShoppingListDetailsFragment : Fragment(), ShoppingItemsAdapter.OnItemClick
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
 
-            addGroceryButton.setOnClickListener {
-                val nameText = addGroceryTitleEdittext.text.toString()
-                val quantityText = addGroceryQuantityEdittext.text.toString()
-                val quantity = if (quantityText == "") 1 else quantityText.toInt()
-                viewModel.onAddButtonClicked(nameText, quantity)
+//            addGroceryButton.setOnClickListener {
+//                val nameText = addGroceryTitleEdittext.text.toString()
+//                val quantityText = addGroceryQuantityEdittext.text.toString()
+//                val quantity = if (quantityText == "") 1 else quantityText.toInt()
+//                viewModel.onAddButtonClicked(nameText, quantity)
+//            }
+            shoppingListTitleTextview.text = shoppingList.title
+            editTitleButton.setOnClickListener {
+                val titleText = shoppingListTitleTextview.text.toString()
+                shoppingListTitleEdittext.setText(titleText)
+                groupDisplay.visibility = View.INVISIBLE
+                groupEditing.visibility = View.VISIBLE
+                shoppingListTitleEdittext.requestFocus()
+            }
+            saveTitleButton.setOnClickListener {
+                val titleText = shoppingListTitleEdittext.text.toString()
+                groupDisplay.visibility = View.VISIBLE
+                groupEditing.visibility = View.GONE
+                viewModel.update(shoppingList.copy(title = titleText))
+                shoppingListTitleTextview.text = titleText
             }
 
             if(isListArchived){

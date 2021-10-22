@@ -46,6 +46,7 @@ class ShoppingListsFragment : Fragment(), ShoppingListsAdapter.OnItemClickListen
                 setHasFixedSize(true)
                 addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
             }
+
         }
         viewModel = ViewModelProvider(
             this, ShoppingListsViewModelFactory(
