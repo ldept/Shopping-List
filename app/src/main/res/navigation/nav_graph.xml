@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingListsArchivedFragment"
-        android:name="com.ldept.shoppinglist.ui.archived_shopping_lists.ShoppingListsArchivedFragment"
+        android:name="com.ldept.shoppinglist.ui.archived_shopping_lists.ArchivedShoppingListsFragment"
         android:label="Archived Shopping Lists"
         tools:layout="@layout/fragment_archived_shopping_lists">
         <action

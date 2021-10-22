@@ -31,7 +31,7 @@ class ShoppingListDetailsViewModel(
         repository.update(shoppingItem.copy(isChecked = isChecked))
     }
 
-    fun onAddButtonClicked(nameText : String, quantity : Int) = viewModelScope.launch {
+    fun onSaveButtonClicked(nameText : String, quantity : Int) = viewModelScope.launch {
 
         val shoppingItem = ShoppingItem(
             0,
@@ -40,6 +40,12 @@ class ShoppingListDetailsViewModel(
             shoppingListId = shoppingList.shoppingListId
         )
         repository.insert(shoppingItem)
+    }
+    fun onSaveButtonClicked(shoppingItem: ShoppingItem) = viewModelScope.launch {
+        repository.update(shoppingItem)
+    }
+    fun onDeleteButtonClicked(shoppingItem: ShoppingItem) = viewModelScope.launch {
+        repository.delete(shoppingItem)
     }
 
 }

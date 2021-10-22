@@ -14,9 +14,8 @@ import com.ldept.shoppinglist.R
 import com.ldept.shoppinglist.ShoppingListApp
 import com.ldept.shoppinglist.database.entities.ShoppingList
 import com.ldept.shoppinglist.databinding.FragmentArchivedShoppingListsBinding
-import com.ldept.shoppinglist.databinding.FragmentShoppingListsBinding
 
-class ShoppingListsArchivedFragment : Fragment(), ShoppingListsArchivedAdapter.OnItemClickListener {
+class ArchivedShoppingListsFragment : Fragment(), ArchivedShoppingListsAdapter.OnItemClickListener {
 
     private lateinit var viewModel: ShoppingListsArchivedViewModel
 
@@ -31,7 +30,7 @@ class ShoppingListsArchivedFragment : Fragment(), ShoppingListsArchivedAdapter.O
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentArchivedShoppingListsBinding.bind(view)
-        val shoppingListsAdapter = ShoppingListsArchivedAdapter(this)
+        val shoppingListsAdapter = ArchivedShoppingListsAdapter(this)
 
         binding.apply {
             archivedShoppingListsRecyclerview.apply {
@@ -54,7 +53,7 @@ class ShoppingListsArchivedFragment : Fragment(), ShoppingListsArchivedAdapter.O
 
     override fun onItemClick(shoppingList: ShoppingList) {
         val action =
-            ShoppingListsArchivedFragmentDirections
+            ArchivedShoppingListsFragmentDirections
                 .actionShoppingListsArchivedFragmentToShoppingListDetailsFragment2(shoppingList, true)
         findNavController().navigate(action)
     }

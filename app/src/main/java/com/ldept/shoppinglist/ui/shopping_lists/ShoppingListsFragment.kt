@@ -1,10 +1,12 @@
 package com.ldept.shoppinglist.ui.shopping_lists
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -20,6 +22,8 @@ import com.ldept.shoppinglist.database.ShoppingListDatabase
 import com.ldept.shoppinglist.database.ShoppingListRepository
 import com.ldept.shoppinglist.database.entities.ShoppingItem
 import com.ldept.shoppinglist.database.entities.ShoppingList
+import com.ldept.shoppinglist.databinding.AddEditGroceryBinding
+import com.ldept.shoppinglist.databinding.AddShoppingListBinding
 import com.ldept.shoppinglist.databinding.FragmentShoppingListsBinding
 
 class ShoppingListsFragment : Fragment(), ShoppingListsAdapter.OnItemClickListener {
@@ -46,6 +50,9 @@ class ShoppingListsFragment : Fragment(), ShoppingListsAdapter.OnItemClickListen
                 setHasFixedSize(true)
                 addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
             }
+            addShoppingListFab.setOnClickListener {
+                showAddDialog()
+            }
 
         }
         viewModel = ViewModelProvider(
@@ -65,6 +72,30 @@ class ShoppingListsFragment : Fragment(), ShoppingListsAdapter.OnItemClickListen
             ShoppingListsFragmentDirections
                 .actionShoppingListsFragmentToShoppingListDetailsFragment2(shoppingList, false)
         findNavController().navigate(action)
+    }
+
+
+    private fun showAddDialog(){
+        val dialog = activity?.let { Dialog(it) }
+        dialog?.apply {
+            setCancelable(true)
+            setContentView(R.layout.add_edit_grocery)
+            setTitle(getString(R.string.add_new_grocery_list))
+        }
+
+        val binding = AddShoppingListBinding.inflate(LayoutInflater.from(context))
+        dialog?.setContentView(binding.root)
+
+
+        binding.apply{
+            saveListButton.setOnClickListener {
+                val nameText = addShoppingListTitleEdittext.text.toString()
+                viewModel.onSaveButtonClicked(nameText)
+                dialog?.dismiss()
+            }
+        }
+        dialog?.window?.attributes?.width = WindowManager.LayoutParams.MATCH_PARENT
+        dialog?.show()
     }
 
 }

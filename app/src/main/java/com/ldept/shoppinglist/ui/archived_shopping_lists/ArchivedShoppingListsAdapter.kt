@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ldept.shoppinglist.database.entities.ShoppingList
 import com.ldept.shoppinglist.databinding.ItemShoppingListBinding
 
-class ShoppingListsArchivedAdapter(
+class ArchivedShoppingListsAdapter(
     private val listener: OnItemClickListener
-) : ListAdapter<ShoppingList, ShoppingListsArchivedAdapter.ShoppingListViewHolder>(DiffCallback()) {
+) : ListAdapter<ShoppingList, ArchivedShoppingListsAdapter.ShoppingListViewHolder>(DiffCallback()) {
 
     interface OnItemClickListener {
         fun onItemClick(shoppingList: ShoppingList)

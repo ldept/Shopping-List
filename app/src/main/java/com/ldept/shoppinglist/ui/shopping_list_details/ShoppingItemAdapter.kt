@@ -9,7 +9,8 @@ import com.ldept.shoppinglist.database.entities.ShoppingItem
 import com.ldept.shoppinglist.databinding.ItemGroceryBinding
 
 class ShoppingItemsAdapter(
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
+    private val isListArchived : Boolean
 ) : ListAdapter<ShoppingItem, ShoppingItemsAdapter.ShoppingItemViewHolder>(DiffCallback()) {
 
     interface OnItemClickListener {
@@ -23,6 +24,14 @@ class ShoppingItemsAdapter(
 
         init {
             binding.apply {
+                root.setOnClickListener {
+                    // It's possible to click a deleted item before an animation finishes
+                    // that's why we have to check if the item we clicked is valid or not
+                    if (adapterPosition != RecyclerView.NO_POSITION) {
+                        val shoppingItem = getItem(adapterPosition)
+                        listener.onItemClick(shoppingItem)
+                    }
+                }
                 groceryCheckbox.setOnClickListener {
                     // It's possible to click a deleted item before an animation finishes
                     // that's why we have to check if the item we clicked is valid or not
@@ -30,6 +39,10 @@ class ShoppingItemsAdapter(
                         val shoppingItem = getItem(adapterPosition)
                         listener.onItemCheckboxClick(shoppingItem,groceryCheckbox.isChecked)
                     }
+                }
+                if (isListArchived){
+                    root.isClickable = false
+                    groceryCheckbox.isClickable = false
                 }
             }
         }
